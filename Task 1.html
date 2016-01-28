@@ -1,0 +1,38 @@
+<html >
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="myStyle.css">
+  <script type='text/javascript' src="angular.min.js"></script>
+  <script type='text/javascript' src="myJs.js"></script>
+</head>
+<body ng-app='Message'>
+  <div class="mainDiv" ng-controller="getmessageAllUser as message"
+                      ng-submit=>
+
+  <div class='areaUsersMessage' >
+
+    <div ng-repeat="repitmessage in message.messageObj" >
+
+      <p ng-class="{'text-align-right':repitmessage.name=='Вася'}">{{repitmessage.name}}<br>
+      {{repitmessage.comment}}</p>
+
+
+    </div>
+  </div>
+
+
+      <div class="Form">
+      <form>
+        <textarea class="messageArea" ng-model="message.messageObj.comment"></textarea>
+       <input type="submit" class="btn btn-mini"></input>
+      </form>
+    </div>
+
+
+
+  </div>
+</body>
+
+</html>
