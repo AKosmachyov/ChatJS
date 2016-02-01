@@ -7,8 +7,10 @@ app.controller('getmessageAllUser',function(){
    
   this.chat=$chat.getAllMessage();
   this.addMessage=function(value){
-   $chat.sentMessage("Вася",value);  
-  }           
+   var newValue = value.replace(/\s+/g, '');
+   if($chat.isAuthorize()&& newValue.length>=1)
+   $chat.sentMessage("Вася",value);
+   }           
 });
 
 app.controller('loginCtrl',function($scope){
