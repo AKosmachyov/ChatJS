@@ -1,16 +1,18 @@
+
 (function(){
-var app=angular.module('Message',[]);
+ 
+var app=angular.module('Message', []);
+
 app.controller('getmessageAllUser',function(){
-  this.messageObj=arrayMessage;
+   
+  this.chat=$chat.getAllMessage();
+  this.addMessage=function(value){
+   $chat.sentMessage("Вася",value);  
+  }           
 });
-var arrayMessage=[
-  {
-    name:'Вася',
-    comment:'вава'
-  },
-  {
-    name:'Петя',
-    comment:'ваsdadва'
-  }
-];
+
+app.controller('loginCtrl',function($scope){
+    $scope.login=$chat.login;
+    $scope.isAuthorize=$chat.isAuthorize;
+});
 })();

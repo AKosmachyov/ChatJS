@@ -1,27 +1,29 @@
 
 .mainDiv{
-    
+   
 }
-.areaUsersMessage{
-    width: 600px;
+.textInArea{
+    word-break: break-all;
+}
+.messageViewArea{
+     border: 2px ridge lightgray;
+     overflow: auto;
     height: 500px;
-    border: solid 1px black;
-    margin: 0px auto;
-    
 }
-.Form{
-    border: solid 1px darkblue;
-    width: 600px;
-    margin-left:  auto;  
-    margin-right: auto; 
-     
-       
+      
+.skrol-div{
+    
 }
 .messageArea{
-    width:500px; 
+    width:550px; 
     height: 80px; /* Высота поля в пикселах */
-    resize: none;
-    margin-top:20px;
+    resize: none;   
+}
+.text-area{
+    width: 60%;
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top : 20px;
 }
 .text-align-right{
     text-align: right;

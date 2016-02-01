@@ -1,38 +1,164 @@
-<html >
+<html>
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="myStyle.css">
-  <script type='text/javascript' src="angular.min.js"></script>
-  <script type='text/javascript' src="myJs.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script type='text/javascript' src="jquery-2.2.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type='text/javascript' src="angular.min.js"></script>
+<link rel="stylesheet" type="text/css"" href="myStyle.css">
+<script type='text/javascript' src="myJs.js"></script>
+<script type="text/javascript" src="chat-store.js"></script>
+
 </head>
+
 <body ng-app='Message'>
-  <div class="mainDiv" ng-controller="getmessageAllUser as message"
-                      ng-submit=>
-
-  <div class='areaUsersMessage' >
-
-    <div ng-repeat="repitmessage in message.messageObj" >
-
-      <p ng-class="{'text-align-right':repitmessage.name=='Вася'}">{{repitmessage.name}}<br>
-      {{repitmessage.comment}}</p>
-
+    <div class="container">
+       
+   
+    <div ng-controller="loginCtrl">
+    <div class="row" ng-show="!isAuthorize()">
+       
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#register" >Регистрация</button>
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#logIn">Log in</button>
 
     </div>
+    </div>
+     
+  <div class="mainDiv" ng-controller="getmessageAllUser as message">
+<div>
+  <div class="row ">
+      <div class="col-md-2">   
+      </div>   
+      <div class="col-md-8 messageViewArea"> 
+            <div ng-repeat="repitmessage in message.chat track by $index"  >
+                   <div class="row" >
+                        <p class="textInArea">{{repitmessage.from}}<br>
+                        {{repitmessage.message}}</p>
+                    </div>
+            </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+  </div>
   </div>
 
 
-      <div class="Form">
-      <form>
-        <textarea class="messageArea" ng-model="message.messageObj.comment"></textarea>
-       <input type="submit" class="btn btn-mini"></input>
-      </form>
+   <div class="row" ng-controller="loginCtrl">
+
+
+          <div class="col-md-8 text-area input-group">
+              
+                <textarea class="messageArea form-control custom-control" ng-model="newMessage"></textarea>
+                <button class="btn btn-primary form-control"  ng-class="{'disabled':!isAuthorize()}" ng-click='message.addMessage(newMessage);newMessage="";'>Отправить</button>
+          </div>
+
     </div>
 
 
 
+
+
+
+
+<!-- Register -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
+      </div>
+      <div class="modal-body">
+
+                 <form class="form-horizontal" id="registerForm">
+                       <div class="form-group has-feedback" ng-class="{ 'has-error': !userName, 'has-success': userName}">
+                           <label for="InputName" class="col-sm-2">Name</label>
+                           <div class="col-sm-9">
+                                <input type="text" class="form-control" ng-model="userName" id="InputName" placeholder="Jane Doe" required>
+                                <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': !userName, 'glyphicon-ok': userName}" ></span>
+                           </div>
+                          
+                       </div>
+                
+                       <div class="form-group has-feedback" ng-class="{ 'has-error': !userEmail, 'has-success': userEmail}">
+                           <label for="InputEmailReg" class="col-sm-2">Email</label>
+                           <div class="col-sm-9">
+                                <input type="email" class="form-control" ng-model="userEmail" id="InputEmailReg" placeholder="jane.doe@example.com" required>
+                                <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': !userEmail, 'glyphicon-ok': userEmail}"></span>
+                           </div>
+                           
+                       </div>
+                       <div class="form-group has-feedback" ng-class="{ 'has-error': !userPassword, 'has-success': userPassword}">
+                           <label for="InputPasswordReg1" class="col-sm-2">Password</label>
+                           <div class="col-sm-9">
+                                <input type="password" class="form-control" ng-model="userPassword" id="InputPasswordReg1" placeholder="12345678" required>
+                                <span class="glyphicon form-control-feedback" ng-class="{ 'glyphicon-remove': !userPassword, 'glyphicon-ok': userPassword}" ></span>
+                           </div>
+                           
+                       </div>
+                         <div class="form-group has-feedback" ng-class="{'has-error':(userRepitPassword!=userPassword || !userRepitPassword), 'has-success': (userRepitPassword || userRepitPassword==userPassword)}">
+                           <label for="InputPasswordReg2" class="col-sm-2">Repit password</label>
+                           <div class="col-sm-9">
+                                <input type="password" class="form-control" ng-model="userRepitPassword" id="InputPasswordReg2" placeholder="12345678" required>
+                                <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-remove':(userRepitPassword!=userPassword || !userRepitPassword), 'glyphicon-ok': (userRepitPassword || userRepitPassword==userPassword)}" ></span>
+                           </div>
+
+                       </div>
+                     
+                
+
+                 </form>      
+                         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-default" form="registerForm" ng-class="{'disabled':(!userPassword || userRepitPassword!=userPassword)}">Register</button>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- LogIn -->
+  </div>
+  </div>
+  <div class="modal fade" id="logIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" ng-controller="loginCtrl">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
+      </div>
+      <div class="modal-body">
+
+                 <form class="form-horizontal" id="logInForm" >
+                       
+                       <div class="form-group">
+                           <label  for="InputEmailLog" class="col-sm-2">Email</label>
+                           <div class="col-sm-10">
+                                <input type="email" class="form-control" id="InputEmailLog" placeholder="jane.doe@example.com" ng-model="email">
+                           </div>
+                       </div>
+                       
+                       <div class="form-group">
+                           <label for="InputPasswordLog" class="col-sm-2" >Password</label>
+                           <div class="col-sm-10">
+                                <input type="password" class="form-control" id="InputPasswordLog" placeholder="12345678" ng-model="password">
+                           </div>
+                       </div>
+                    
+                 </form>    
+                         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-default"  form="logInForm" data-dismiss="modal" ng-click="login(email,password)">LogIn</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
