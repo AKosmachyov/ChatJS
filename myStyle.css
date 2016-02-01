@@ -1,7 +1,5 @@
 
-.mainDiv{
-   
-}
+
 .textInArea{
     word-break: break-all;
 }
@@ -10,10 +8,12 @@
      overflow: auto;
     height: 500px;
 }
-      
-.skrol-div{
-    
+.change-color-message{
+    border-left: 2px solid indianred;
+    margin-left:1%;
+    word-wrap: break-word;
 }
+
 .messageArea{
     width:550px; 
     height: 80px; /* Высота поля в пикселах */
@@ -27,4 +27,11 @@
 }
 .text-align-right{
     text-align: right;
+}
+.users-photo{
+    width: 100px;
+    height:100px;
+}
+.modal-body-optionarea{ 
+    margin: 1% 3%;
 }

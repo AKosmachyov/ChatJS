@@ -14,5 +14,8 @@ app.controller('getmessageAllUser',function(){
 app.controller('loginCtrl',function($scope){
     $scope.login=$chat.login;
     $scope.isAuthorize=$chat.isAuthorize;
+    $scope.getNameUser=$chat.getNameUser;
+    $scope.register=$chat.register;
+    $scope.logOut=$chat.logOut;
 });
 })();
