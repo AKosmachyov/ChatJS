@@ -35,3 +35,7 @@
 .modal-body-optionarea{ 
     margin: 1% 3%;
 }
+.cursor
+{
+    cursor: default; 
+}
