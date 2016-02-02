@@ -36,10 +36,8 @@
             <div ng-if="isAuthorize()" class="pull-right">
 
                 <div class="form-inline dropdown">
-                    <!-- Кнопка очистки-->
-                <button class="btn btn-default" ng-click="clearMessageHistory()">Очистка</button> 
-                
-                    <span for="dropdownMenu">Привет:</span>
+
+                    <label for="dropdownMenu">Привет:</label>
                     <span class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown">
                     <b>{{getNameUser()}}</b>
                     <span class="caret"></span>
@@ -66,7 +64,7 @@
                 <div class="row">
                     <div class="col-md-2">
                     </div>
-                    <div id="usersMessageDiv"class="col-md-8 messageViewArea">
+                    <div class="col-md-8 messageViewArea">
                         <div ng-repeat="repitmessage in message.chat track by $index">
                             <div class="row">
                                 <p class="textInArea">{{repitmessage.from}}
@@ -89,8 +87,8 @@
 
                 <div class="col-md-8 text-area input-group">
 
-                    <textarea id="messageTextarea" class="messageArea form-control custom-control" ng-disabled="!isAuthorize()" ng-model="newMessage" ></textarea>
-                    <button class="btn btn-primary form-control" ng-class="{'disabled':!isAuthorize()}"
+                    <textarea class="messageArea form-control custom-control" ng-model="newMessage"></textarea>
+                    <button class="btn btn-primary form-control" ng-class="{'disabled':!isAuthorize()}" 
                     ng-click='message.addMessage(newMessage);newMessage=" ";'>Отправить</button>
                 </div>
             </div>
