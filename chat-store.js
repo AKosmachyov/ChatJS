@@ -34,6 +34,10 @@
           $('#'+nameModul).modal('hide');
           };
     };      
+    this.clearMessageHistory=function(){
+        _store.splice(0,_store.length);
+        localStorage.setItem('messageHistory',null);
+    };
     this.logOut=function(){
          _currentUser=null;
     };

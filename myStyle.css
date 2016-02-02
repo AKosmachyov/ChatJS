@@ -13,11 +13,10 @@
     margin-left:1%;
     word-wrap: break-word;
 }
-
 .messageArea{
     width:550px; 
     height: 80px; /* Высота поля в пикселах */
-    resize: none;   
+    resize: none;    
 }
 .text-area{
     width: 60%;
