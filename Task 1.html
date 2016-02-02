@@ -36,8 +36,10 @@
             <div ng-if="isAuthorize()" class="pull-right">
 
                 <div class="form-inline dropdown">
-
-                    <label for="dropdownMenu">Привет:</label>
+                    <!-- Кнопка очистки-->
+                <button class="btn btn-default" ng-click="clearMessageHistory()">Очистка</button> 
+                
+                    <span for="dropdownMenu">Привет:</span>
                     <span class="dropdown-toggle" id="dropdownMenu" data-toggle="dropdown">
                     <b>{{getNameUser()}}</b>
                     <span class="caret"></span>
