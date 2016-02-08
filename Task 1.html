@@ -89,7 +89,7 @@
 
                 <div class="col-md-8 text-area input-group">
 
-                    <textarea class="messageArea form-control custom-control" ng-model="newMessage"></textarea>
+                    <textarea class="messageArea form-control custom-control" ng-disabled="!isAuthorize()" ng-model="newMessage"></textarea>
                     <button class="btn btn-primary form-control" ng-class="{'disabled':!isAuthorize()}" 
                     ng-click='message.addMessage(newMessage);newMessage=" ";'>Отправить</button>
                 </div>
